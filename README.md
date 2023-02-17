@@ -20,7 +20,7 @@
     <li>
       <a href="#Usage">Usage</a>
       <ul>
-        <li><a href="#Deubiquitinase-substrate-interaction-(DSI)-prediction">Deubiquitinase substrate interaction (DSI) prediction</a></li>
+        <li><a href="#DSI-prediction">DSI prediction</a></li>
         <li><a href="#DSI-binding-site-inference">DSI binding site inference</a></li>
       </ul>
     </li>
@@ -73,8 +73,8 @@ Check environments.yml for list of needed packages.
 
 ## Usage
 
-### Deubiquitinase substrate interaction (DSI) prediction
-To predict DSI use `run_DSIPredictor.py` script with the following options:
+### DSI prediction
+To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following options:
 
 * `dub`             str, Uniprot ID of the queried DUB
 * `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
