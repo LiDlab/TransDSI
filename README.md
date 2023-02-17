@@ -15,6 +15,11 @@ To install all dependencies run:
 conda env create -f environment.yml
 ```
 
+### Data
+Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://www.zenodo.org/record/7648337/files/data.tar.gz?download=1)
+
+Uncompress `tar.gz` file into the DeepDSI directory (`tar -zxvf data.tar.gz -C /path/to/DeepDSI`).
+
 
 ### Folders
 ./src contains the implementation for the fivefold cross-validations and independent tests of DeepDSI and Baselines.
@@ -23,7 +28,7 @@ conda env create -f environment.yml
 
 ./explain contains the invoking of PairExplainer, which is used to analyze the explainability of the queried DSI.
 
-./data contains the data needed for all source code, and ./results contains the results for all source code.
+./results contains DeepDSI prediction results, explainable analysis results, and trained DeepDSI model.
 
 
 ### Deubiquitinase-substrate interaction (DSI) prediction
