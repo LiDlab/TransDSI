@@ -58,7 +58,10 @@ Check environments.yml for list of needed packages.
 
    Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://www.zenodo.org/record/7648337/files/data.tar.gz?download=1)
 
-   Uncompress `tar.gz` file into the DeepDSI directory (`tar -zxvf data.tar.gz -C /path/to/DeepDSI`).
+   Uncompress `tar.gz` file into the DeepDSI directory
+   ```sh
+   tar -zxvf data.tar.gz -C /path/to/DeepDSI
+   ```
 
 
 ### Folders
