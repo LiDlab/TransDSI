@@ -1,4 +1,35 @@
 # DeepDSI
+<h1 align="center">DeepDSI</h1>
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#About-the-project">About The Project</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#folders">Folders</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#Usage">Usage</a>
+      <ul>
+        <li><a href="#Deubiquitinase-substrate interaction (DSI) prediction">Deubiquitinase-substrate interaction (DSI) prediction</a></li>
+        <li><a href="#DSI binding site inference">DSI binding site inference</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
+
+
+
+## About The Project
  ![DeepDSI Architecture](results/model/Fig1.png)
 
 DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. DeepDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, DeepDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
@@ -6,19 +37,29 @@ DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable
  - DeepDSI is described in the paper [“A deep learning framework for protein sequence-based deubiquitinase-substrate interaction identification”](https://github.com/Laboratory-of-biological-networks/DeepDSI) by Yuan Liu, Dianke Li, Xin Zhang, et al.
 
 
+## Getting Started
+To get a local copy up and running, follow these simple steps
+
 ### Dependencies
 DeepDSI is tested to work under Python 3.7.
 The required dependencies for DeepDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
-To install all dependencies run:
+Check environments.yml for list of needed packages.
 
-```
-conda env create -f environment.yml
-```
+### Installation
 
-### Data
-Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://www.zenodo.org/record/7648337/files/data.tar.gz?download=1)
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Laboratory-of-biological-networks/DeepDSI.git
+   ```
+2. Create conda environment
+   ```sh
+   conda env create -f environment.yml
+   ```
+3. Based on your use, you may need to download data
 
-Uncompress `tar.gz` file into the DeepDSI directory (`tar -zxvf data.tar.gz -C /path/to/DeepDSI`).
+   Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://www.zenodo.org/record/7648337/files/data.tar.gz?download=1)
+
+   Uncompress `tar.gz` file into the DeepDSI directory (`tar -zxvf data.tar.gz -C /path/to/DeepDSI`).
 
 
 ### Folders
@@ -30,6 +71,7 @@ Uncompress `tar.gz` file into the DeepDSI directory (`tar -zxvf data.tar.gz -C /
 
 ./results contains DeepDSI prediction results, explainable analysis results, and trained DeepDSI model.
 
+## Usage
 
 ### Deubiquitinase-substrate interaction (DSI) prediction
 To predict DSI use `run_DSIPredictor.py` script with the following options:
