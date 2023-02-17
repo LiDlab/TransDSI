@@ -20,8 +20,8 @@
     <li>
       <a href="#Usage">Usage</a>
       <ul>
-        <li><a href="#Deubiquitinase-substrate interaction (DSI) prediction">Deubiquitinase-substrate interaction (DSI) prediction</a></li>
-        <li><a href="#DSI binding site inference">DSI binding site inference</a></li>
+        <li><a href="#Deubiquitinase-substrate-interaction-(DSI)-prediction">Deubiquitinase-substrate interaction (DSI) prediction</a></li>
+        <li><a href="#DSI-binding-site-inference">DSI binding site inference</a></li>
       </ul>
     </li>
   </ol>
