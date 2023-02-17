@@ -33,7 +33,7 @@
 
 DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. DeepDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, DeepDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
 
- - DeepDSI is described in the paper [“A deep learning framework for protein sequence-based deubiquitinase-substrate interaction identification”](https://github.com/Laboratory-of-biological-networks/DeepDSI) by Yuan Liu, Dianke Li, Xin Zhang, et al.
+ - DeepDSI is described in the paper [“A deep learning framework for protein sequence-based deubiquitinase-substrate interaction identification”](https://github.com/Laboratory-of-biological-networks/DeepDSI) by Yuan Liu, Dianke Li, Xin Zhang, _et al_.
 
 
 ## Getting Started
