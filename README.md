@@ -1,4 +1,3 @@
-# DeepDSI
 <h1 align="center">DeepDSI</h1>
 
 
