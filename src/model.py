@@ -116,7 +116,7 @@ class Classifier(nn.Module):
         self.fc3 = nn.Linear(256, 64)
         self.bn3 = nn.BatchNorm1d(64)
         self.fc4 = nn.Linear(64, out_features)
-        self.dropout = nn.Dropout(p=0.2)
+        self.dropout = nn.Dropout(p=0.4)
         self.act = nn.Mish()
 
     def forward(self, x, pro1_index, pro2_index):
