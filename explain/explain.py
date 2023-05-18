@@ -12,14 +12,13 @@ def attention2seq(sequence, node_feat_mask):
                 'Y': '3', 'M': '3', 'T': '3', 'S': '3', 'H': '4', 'N': '4', 'Q': '4', 'W': '4',
                 'R': '5', 'K': '5', 'D': '6', 'E': '6', 'C': '7',
                 'B': '8', 'O': '8', 'J': '8', 'U': '8', 'X': '8', 'Z': '8'}
-    seq = ''.join([classMap[x] for x in sequence])  # 数字编码
+    seq = ''.join([classMap[x] for x in sequence])
     length = len(seq)
     coding = np.zeros(length - 2)
-    for i in range(length - 2):  # 减去最后面两个
+    for i in range(length - 2):
         if (int(seq[i]) == 8 or int(seq[i + 1]) == 8 or int(seq[i + 2]) == 8):
             continue
         index = int(seq[i]) + (int(seq[i + 1]) - 1) * 7 + (int(seq[i + 2]) - 1) * 49 - 1
-        # 该index对应我们向量
         coding[i] = node_feat_mask[index].item()
     return coding
 
