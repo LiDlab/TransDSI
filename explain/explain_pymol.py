@@ -20,7 +20,7 @@ for line in structure_file:
         idx = int(line[22:26].strip())
 
         if chain == 'A':
-        #修改预测值
+        # importance
             line = list(line)
             line[60:66] = list("{:,.2f}".format(avg_imp[idx - 1]).rjust(6))
             line = "".join(line)
