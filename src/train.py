@@ -4,6 +4,7 @@ import torch
 from torch import nn, optim
 from model import VGAE, DSIPredictor
 from utils import try_gpu, loss_function
+import copy
 
 def train_VGAE(features, adj_norm, adj_label, epochs, outdim):
 
@@ -44,8 +45,8 @@ def train_DSIPredictor(vgae_dict, features, adj, X_train, Y_train, epochs):
     Y_train = torch.FloatTensor(Y_train).to(device=try_gpu())
 
     model = DSIPredictor(686, 1).to(device=try_gpu())
-    model.gc1.weight.data = vgae_dict['gc1.weight']
-    model.gc2.weight.data = vgae_dict['gc2.weight']
+    model.gc1.weight.data = copy.deepcopy(vgae_dict['gc1.weight'])
+    model.gc2.weight.data = copy.deepcopy(vgae_dict['gc2.weight'])
 
     loss_fcn = nn.BCELoss()
 
