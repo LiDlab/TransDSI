@@ -69,8 +69,8 @@ for dub in tqdm(train_dub):
     UB2_gsp_train_sub = UB2_gsp_train[UB2_gsp_train["DUB"] == dub].copy()
     inter_gsp_train_sub = UB2_gsp_train_sub[UB2_gsp_train_sub["Substrate"].isin(our_gsp_train_sub["SUB"].values)].copy()
 
-    new_gsp_train.append(our_gsp_train_sub)         # 我们的阳性训练
-    inter_gsp_train.append(inter_gsp_train_sub)     # 和UB2的交集
+    new_gsp_train.append(our_gsp_train_sub)
+    inter_gsp_train.append(inter_gsp_train_sub)
 
     UB2_gsn_train_sub = UB2_gsn_train[UB2_gsn_train["Pro1"] == dub].copy()
     UB2_gsn_test_sub = UB2_gsn_test[UB2_gsn_test["Pro2"] == dub].copy()
@@ -159,11 +159,48 @@ for dub in tqdm(test_dub):
         else:
             new_gsn_test.append(gsn_sub.sample(add_num))
 
-
 new_gsp_test = pd.concat(new_gsp_test)
 new_gsn_test = pd.concat(new_gsn_test)
 inter_gsp_test = pd.concat(inter_gsp_test)
 inter_gsn_test = pd.concat(inter_gsn_test)
+
+# Get ubibrowser predictions
+new_inter_gsp_test = list()
+new_inter_gsn_test = list()
+
+ub2_pred = pd.read_table(data_path + "ubibrowser2/" + "H.sapiens.result.txt")
+ub2_pred = ub2_pred[(ub2_pred["enyz"].isin(list(gsp_test["DUB"].values) + list(new_gsn_test["Pro1"]))) & (ub2_pred['sub'].isin(list(gsp_test['SUB']) + list(new_gsn_test["Pro2"])))]
+
+for i in tqdm(range(len(gsp_test))):
+    i_gsp_test = gsp_test.iloc[i]
+    i_inter_gsp_test = inter_gsp_test[(inter_gsp_test['DUB'] == i_gsp_test['DUB']) & (inter_gsp_test['Substrate'] == i_gsp_test['SUB'])]
+
+    if len(i_inter_gsp_test):
+        new_inter_gsp_test.append(i_inter_gsp_test)
+    else:
+        i_ub2_pred = ub2_pred[(ub2_pred['enyz'] == i_gsp_test['DUB']) & (ub2_pred['sub'] == i_gsp_test['SUB'])].copy()
+        if len(i_ub2_pred):
+            i_ub2_pred.loc[:,'label'] = 1
+            i_ub2_pred = i_ub2_pred[['enyz','sub','label','motifLR','domainLR','goLR','netLR','interLR']].copy()
+            i_ub2_pred.rename(columns = dict(zip(i_ub2_pred.columns, i_inter_gsp_test.columns)), inplace = True)
+            new_inter_gsp_test.append(i_ub2_pred)
+
+for i in tqdm(range(len(new_gsn_test))):
+    i_gsn_test = new_gsn_test.iloc[i]
+    i_inter_gsn_test = inter_gsn_test[(inter_gsn_test['Pro1'] == i_gsn_test['Pro1']) & (inter_gsn_test['Pro2'] == i_gsn_test['Pro2'])]
+
+    if len(i_inter_gsn_test):
+        new_inter_gsn_test.append(i_inter_gsn_test)
+    else:
+        i_ub2_pred = ub2_pred[(ub2_pred['enyz'] == i_gsn_test['Pro1']) & (ub2_pred['sub'] == i_gsn_test['Pro2'])].copy()
+        if len(i_ub2_pred):
+            i_ub2_pred.loc[:,'label'] = -1
+            i_ub2_pred = i_ub2_pred[['enyz','sub','label','motifLR','domainLR','goLR','netLR','interLR']].copy()
+            i_ub2_pred.rename(columns = dict(zip(i_ub2_pred.columns, i_inter_gsn_test.columns)), inplace = True)
+            new_inter_gsn_test.append(i_ub2_pred)
+
+new_inter_gsp_test = pd.concat(new_inter_gsp_test)
+new_inter_gsn_test = pd.concat(new_inter_gsn_test)
 
 save_path = data_path + "dataset/"
 
@@ -173,5 +210,5 @@ new_gsp_test.to_csv(save_path + "gsp_test.txt", index=False, header=True, sep="\
 new_gsn_test.to_csv(save_path + "gsn_test.txt", index=False, header=True, sep="\t")
 inter_gsp_train.to_csv(save_path + "inter_gsp_train.txt", index=False, header=True, sep="\t")
 inter_gsn_train.to_csv(save_path + "inter_gsn_train.txt", index=False, header=True, sep="\t")
-inter_gsp_test.to_csv(save_path + "inter_gsp_test.txt", index=False, header=True, sep="\t")
-inter_gsn_test.to_csv(save_path + "inter_gsn_test.txt", index=False, header=True, sep="\t")
+new_inter_gsp_test.to_csv(save_path + "inter_gsp_test.txt", index=False, header=True, sep="\t")
+new_inter_gsn_test.to_csv(save_path + "inter_gsn_test.txt", index=False, header=True, sep="\t")
