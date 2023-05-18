@@ -50,7 +50,7 @@ Check environments.yml for list of needed packages.
    ```sh
    git clone https://github.com/Laboratory-of-biological-networks/DeepDSI.git
    ```
-2. Create conda environment
+2. Create conda environment for DeepDSI
    ```sh
    conda env create -f environment.yml
    ```
