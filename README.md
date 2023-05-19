@@ -156,4 +156,4 @@ We also provide **GSD with inferred binding sites**, please [click](https://gith
 * #### [Baselines](https://github.com/Laboratory-of-biological-networks/DeepDSI/tree/master/results/roc)
 To ensure fair comparison, DeepDSI GSD are intersected with the corresponding datasets from [UbiBrowser 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/home/download).
 
-If you are using DeepDSI as **Baseline**, please download the [cross-validation results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and [independent test results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
+If you are using DeepDSI as **Baseline**, please download the [cross-validation results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
