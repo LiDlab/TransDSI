@@ -24,7 +24,7 @@
       </ul>
     </li>
     <li>
-      <a href="#predicted-dataset">Predicted Dataset</a>
+      <a href="#available-data">Available Data</a>
       <ul>
         <li><a href="#predicted-dsi-dataset-pdsid">Predicted DSI Dataset (PDSID)</a></li>
         <li><a href="#gold-standard-dataset-gsd">Gold Standard Dataset (GSD)</a></li>
