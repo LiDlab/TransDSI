@@ -26,9 +26,9 @@
     <li>
       <a href="#available-data">Available Data</a>
       <ul>
-        <li><a href="#predicted-dsi-dataset-pdsid">Predicted DSI Dataset (PDSID)</a></li>
         <li><a href="#gold-standard-dataset-gsd">Gold Standard Dataset (GSD)</a></li>
         <li><a href="#baselines">Baselines</a></li>
+        <li><a href="#predicted-dsi-dataset-pdsid">Predicted DSI Dataset (PDSID)</a></li>
       </ul>
     </li>
   </ol>
@@ -143,11 +143,6 @@ The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q146
 
 ## Available Data
 
-* #### [Predicted DSI Dataset (PDSID)](https://github.com/Laboratory-of-biological-networks/DeepDSI/raw/master/Supplemental_Files/Supplementary%20Table%20S3.xlsx)
-DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
-
-We also provide **PDSID with inferred binding sites**, please [click](https://zenodo.org/record/7949804/files/Supplementary%20Table%20S3.xlsx?download=1) to download.
-
 * #### [Gold Standard Dataset (GSD)](https://github.com/Laboratory-of-biological-networks/DeepDSI/raw/master/Supplemental_Files/Supplementary%20Table%20S1.xlsx)
 DeepDSI has established a rigorous gold standard dataset where the negative set is derived from [BioGRID](https://thebiogrid.org/). In addition, cross-validation dataset and independent test dataset are divided in chronological order.
 
@@ -157,3 +152,8 @@ We also provide **GSD with inferred binding sites**, please [click](https://gith
 To ensure fair comparison, DeepDSI GSD are intersected with the corresponding datasets from [UbiBrowser 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/home/download).
 
 If you are using DeepDSI as **Baseline**, please download the [cross-validation results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/Laboratory-of-biological-networks/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
+
+* #### [Predicted DSI Dataset (PDSID)](https://github.com/Laboratory-of-biological-networks/DeepDSI/raw/master/Supplemental_Files/Supplementary%20Table%20S3.xlsx)
+DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
+
+We also provide **PDSID with inferred binding sites**, please [click](https://zenodo.org/record/7949804/files/Supplementary%20Table%20S3.xlsx?download=1) to download.
