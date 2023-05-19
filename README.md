@@ -26,8 +26,8 @@
     <li>
       <a href="#Predicted-Dataset">Getting Started</a>
       <ul>
-        <li><a href="#Predicted-DUB--Substrate-Interaction-Dataset-(PDSID)">Dependencies</a></li>
-        <li><a href="#Gold-Standard-Dataset-(GSD)">Installation</a></li>
+        <li><a href="#Predicted-DSI-Dataset">Dependencies</a></li>
+        <li><a href="#Gold-Standard-Dataset">Installation</a></li>
         <li><a href="#Baselines">Folders</a></li>
       </ul>
     </li>
@@ -144,7 +144,7 @@ The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q146
 
 ## Predicted Dataset
 
-* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/Laboratory-of-biological-networks/DeepDSI/raw/master/Supplemental_Files/Supplementary%20Table%20S3.xlsx)
+* #### [Predicted DSI Dataset (PDSID)](https://github.com/Laboratory-of-biological-networks/DeepDSI/raw/master/Supplemental_Files/Supplementary%20Table%20S3.xlsx)
 DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
 
 We also provide **PDSID with inferred binding sites**, please [click](https://zenodo.org/record/7949804/files/Supplementary%20Table%20S3.xlsx?download=1) to download.
