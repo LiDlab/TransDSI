@@ -6,14 +6,14 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
-      <a href="#About-the-project">About The Project</a>
+      <a href="#About-The-Project">About The Project</a>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#Getting-Started">Getting Started</a>
       <ul>
-        <li><a href="#dependencies">Dependencies</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#folders">Folders</a></li>
+        <li><a href="#Dependencies">Dependencies</a></li>
+        <li><a href="#Installation">Installation</a></li>
+        <li><a href="#Folders">Folders</a></li>
       </ul>
     </li>
     <li>
@@ -23,9 +23,16 @@
         <li><a href="#DSI-binding-site-inference">DSI binding site inference</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#Predicted-Dataset">Getting Started</a>
+      <ul>
+        <li><a href="#Predicted-DUB--Substrate-Interaction-Dataset-(PDSID)">Dependencies</a></li>
+        <li><a href="#Gold-Standard-Dataset-(GSD)">Installation</a></li>
+        <li><a href="#Baselines">Folders</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
-
 
 
 ## About The Project
