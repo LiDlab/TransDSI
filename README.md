@@ -6,29 +6,29 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
-      <a href="#About-The-Project">About The Project</a>
+      <a href="#about-the-project">About The Project</a>
     </li>
     <li>
-      <a href="#Getting-Started">Getting Started</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#Dependencies">Dependencies</a></li>
-        <li><a href="#Installation">Installation</a></li>
-        <li><a href="#Folders">Folders</a></li>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#folders">Folders</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Usage">Usage</a>
+      <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#DSI-prediction">DSI prediction</a></li>
-        <li><a href="#DSI-binding-site-inference">DSI binding site inference</a></li>
+        <li><a href="#dsi-prediction">DSI prediction</a></li>
+        <li><a href="#dsi-binding-site-inference">DSI binding site inference</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Predicted-Dataset">Getting Started</a>
+      <a href="#predicted-dataset">Getting Started</a>
       <ul>
-        <li><a href="#Predicted-DSI-Dataset">Dependencies</a></li>
-        <li><a href="#Gold-Standard-Dataset">Installation</a></li>
-        <li><a href="#Baselines">Folders</a></li>
+        <li><a href="#predicted-dsi-dataset-pdsid">Predicted DSI Dataset (PDSID)</a></li>
+        <li><a href="#gold-standard-dataset-gsd">Gold Standard Dataset (GSD)</a></li>
+        <li><a href="#baselines">Baselines</a></li>
       </ul>
     </li>
   </ol>
@@ -69,7 +69,6 @@ Check environments.yml for list of needed packages.
    ```sh
    tar -zxvf data.tar.gz -C /path/to/DeepDSI
    ```
-
 
 ### Folders
 ./src contains the implementation for the fivefold cross-validations and independent tests of DeepDSI and Baselines.
