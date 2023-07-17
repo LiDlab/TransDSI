@@ -108,7 +108,7 @@ The DeepDSI score of Q14694 and Q00987 is 0.9987.
 ```
 
 ### DSI binding site inference
-To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the DeepDSI score
+To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the interaction
 
 use `run_PairExplainer.py` script with the following options:
 
