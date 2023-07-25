@@ -47,12 +47,13 @@ DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable
 
 
 ## Getting Started
-To get a local copy up and running, follow these steps
+To get a local copy up and running, follow these steps:
 
 ### Dependencies
 DeepDSI is tested to work under Python 3.7.
 The required dependencies for DeepDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
 Check environments.yml for list of needed packages.
+
 DeepDSI can run on both Windows v10 and Ubuntu v18.04 environments. We highly recommend installing and running this software on a computer with an discrete NVIDIA graphics card (models that support CUDA). If there is no discrete graphics card, the program can also run on the CPU, but it may require a longer runtime.
 
 ### Installation
@@ -87,7 +88,7 @@ The time it takes to install the required software for DeepDSI on a "normal" des
 ## Usage
 
 ### DSI prediction
-To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following options:
+To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following parameters:
 
 * `dub`             str, Uniprot ID of the queried DUB
 * `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
@@ -116,7 +117,7 @@ The DeepDSI score of Q14694 and Q00987 is 0.9987.
 ### DSI binding site inference
 To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the interaction
 
-use `run_PairExplainer.py` script with the following options:
+use `run_PairExplainer.py` script with the following parameters:
 
 * `feat_mask_obj`             str, The object of feature mask that will be learned (`dsi` - DSI, `dub` - DUB, `sub` - SUB)
 * `dub`             str, Uniprot ID of the queried DUB
