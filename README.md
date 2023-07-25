@@ -63,7 +63,7 @@ Check environments.yml for list of needed packages.
    ```
 3. Based on your use, you may need to download data
 
-   Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://www.zenodo.org/record/7648337/files/data.tar.gz?download=1)
+   Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://zenodo.org/record/7648337/files/data.tar.gz?download=1)
 
    Uncompress `tar.gz` file into the DeepDSI directory
    ```sh
