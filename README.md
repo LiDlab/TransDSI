@@ -147,6 +147,8 @@ Transferred model and data to GPU
 importance this pair of DSI: 100%|████████████████████████| 10000/10000 [06:49<00:00, 24.43it/s]
 The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q14694_Q00987.csv'.
 ```
+#### Reproduction instructions for fivefold cross-validations and independent tests:
+
 
 ## Available Data
 
