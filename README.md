@@ -53,6 +53,7 @@ To get a local copy up and running, follow these steps
 DeepDSI is tested to work under Python 3.7.
 The required dependencies for DeepDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
 Check environments.yml for list of needed packages.
+DeepDSI can run on both Windows v10 and Ubuntu v18.04 environments. We highly recommend installing and running this software on a computer with an discrete NVIDIA graphics card (models that support CUDA). If there is no discrete graphics card, the program can also run on the CPU, but it may require a longer runtime.
 
 ### Installation
 
@@ -72,6 +73,7 @@ Check environments.yml for list of needed packages.
    ```sh
    tar -zxvf data.tar.gz -C /path/to/DeepDSI
    ```
+The time it takes to install the required software for DeepDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to https://medium.com/analytics-vidhya/4-steps-to-install-anaconda-and-pytorch-onwindows-10-5c9cb0c80dfe for further details.
 
 ### Folders
 ./src contains the implementation for the fivefold cross-validations and independent tests of DeepDSI and Baselines.
@@ -91,7 +93,7 @@ To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` 
 * `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
 * `model_location`             str, DSIPredictor model file location
 
-#### Example: obtaining the DeepDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
+#### DEMO: obtaining the DeepDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
 
 ```
 >> python run_DSIPredictor.py --dub Q14694 --candidate_sub Q00987
@@ -110,6 +112,7 @@ Transferred model and data to GPU
 The DeepDSI score of Q14694 and Q00987 is 0.9987.
 ```
 
+
 ### DSI binding site inference
 To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the interaction
 
@@ -124,7 +127,7 @@ use `run_PairExplainer.py` script with the following options:
 * `epochs`             int, Number of epochs to train PairExplainer
 * `log`             bool, Whether or not to print the learning progress of PairExplainer
 
-#### Example: obtaining the PairExplainer results of USP10-MDM2
+#### DEMO: obtaining the PairExplainer results of USP10-MDM2
 
 ```
 >> python run_PairExplainer.py --feat_mask_obj dsi --dub Q14694 --candidate_sub Q00987 --output_location results/importance/
