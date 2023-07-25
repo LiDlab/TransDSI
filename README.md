@@ -31,11 +31,15 @@
         <li><a href="#predicted-dsi-dataset-pdsid">Predicted DSI Dataset (PDSID)</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#License">License</a>
+    </li>
   </ol>
 </details>
 
 
 ## About The Project
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
  ![DeepDSI Architecture](results/model/Fig1.png)
 
 DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. DeepDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, DeepDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
@@ -157,3 +161,7 @@ Click to download the [cross-validation results](https://github.com/Laboratory-o
 DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
 
 We also provide **PDSID with inferred binding sites**, please [click](https://zenodo.org/record/7949804/files/Supplementary%20Table%20S3.xlsx?download=1) to download.
+
+## License
+
+This project is covered under the **Apache 2.0 License**.
