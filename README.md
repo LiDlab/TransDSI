@@ -164,7 +164,11 @@ If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the
 
 If you want to replicate the five-fold cross-validation and independent testing process of DeepDSI, please run the `main.py` script in the src folder.
 ```sh
-python src/main.py
+cd src/
+```
+AND
+```sh
+python main.py
 ```
 
 ## Available Data
