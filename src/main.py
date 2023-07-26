@@ -1,190 +1,108 @@
-<h1 align="center">DeepDSI</h1>
+import numpy as np
+import pandas as pd
+import torch
+from sklearn.model_selection import KFold
+
+from load import load_data, load_dataset
+from train import train_VGAE, extract_logits
+from utils import save_logits, evaluate_logits, try_gpu, youden_index
+
+def cross_val(vgae_dict, features_tensor, adj_norm, AC, X, Y, epochs, save_path):
+
+    random_idx = list(range(AC.shape[0]))
+    np.random.seed(888)
+    np.random.shuffle(random_idx)
+    AC = AC[random_idx]
+    X = X[random_idx]
+    Y = Y[random_idx]
+
+    all_idx = list(range(AC.shape[0]))
+    rs = KFold(n_splits=5, shuffle=True)
+    cv_index_set = rs.split(all_idx)
+
+    all_Y_label = []
+    all_Y_pred = []
+    all_AC_val = []
+    fold = 0
+
+    for train_idx, val_idx in cv_index_set:
+        X_train = X[train_idx]
+        X_val = X[val_idx]
+        Y_train = Y[train_idx]
+        Y_val = Y[val_idx]
+        AC_val = AC[val_idx]
+
+        #print("###################################")
+        #print("The" + str(fold) + "cross validation is underway")
+        fold = fold + 1
+
+        Y_pred, model, pro1_index, pro2_index= extract_logits(vgae_dict, features_tensor, adj_norm, X_train, Y_train, X_val, epochs)
+
+        all_Y_label.append(Y_val)
+        all_Y_pred.append(Y_pred)
+        all_AC_val.append(AC_val)
+
+    Y_val = np.concatenate(all_Y_label)
+    Y_pred = np.concatenate(all_Y_pred)
+    AC_val = np.concatenate(all_AC_val)
+    cross_val_results = np.concatenate([AC_val, Y_val, Y_pred], axis=1)
+
+    integrate = save_logits(cross_val_results, save_path, "DeepDSI", "UB2_crossval.csv", "UB2_DeepDSI_crossval.csv")
+    perf_org, perf, perf_ub2 = evaluate_logits(Y_val, Y_pred, integrate, "DeepDSI")
+
+    return perf_org, perf, perf_ub2
 
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#dependencies">Dependencies</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#folders">Folders</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#usage">Usage</a>
-      <ul>
-        <li><a href="#dsi-prediction">DSI prediction</a></li>
-        <li><a href="#dsi-binding-site-inference">DSI binding site inference</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#available-data">Available Data</a>
-      <ul>
-        <li><a href="#gold-standard-dataset-gsd">Gold Standard Dataset (GSD)</a></li>
-        <li><a href="#benchmark-dataset">Benchmark Dataset</a></li>
-        <li><a href="#predicted-dub-substrate-interaction-dataset-pdsid">Predicted DUB-Substrate Interaction Dataset (PDSID)</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#License">License</a>
-    </li>
-  </ol>
-</details>
+def ind_test(vgae_dict, features_tensor, adj_norm, X_train, Y_train, AC_test, X_test, Y_test, epochs, save_path):
+    random_idx = list(range(X_train.shape[0]))
+    np.random.seed(888)
+    np.random.shuffle(random_idx)
+    X_train = X_train[random_idx]
+    Y_train = Y_train[random_idx]
+
+    Y_pred, model, pro1_index, pro2_index = extract_logits(vgae_dict, features_tensor, adj_norm, X_train, Y_train, X_test, epochs)
+    cross_val_results = np.concatenate([AC_test, Y_test, Y_pred], axis=1)
+
+    integrate = save_logits(cross_val_results, save_path, "DeepDSI", "UB2_indtest.csv", "UB2_DeepDSI_indtest.csv")
+    perf_org, perf, perf_ub2 = evaluate_logits(Y_test, Y_pred, integrate, "DeepDSI")
 
 
-## About The Project
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
- ![DeepDSI Architecture](results/model/Fig1.png)
-
-DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. DeepDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, DeepDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
+    return perf_org, perf, perf_ub2
 
 
+if __name__ == "__main__":
 
-## Getting Started
-To get a local copy up and running, follow these steps:
+    print("Importing data...")
+    data_path = "../data/"
+    uniprot = pd.read_csv(data_path + "uniprot.tsv", sep="\t")
 
-### Dependencies
-DeepDSI is tested to work under Python 3.7.
-The required dependencies for DeepDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
-Check environments.yml for list of needed packages.
+    dataset_train, dataset_test = load_dataset(uniprot, data_path + "dataset/")
+    AC_train = dataset_train[:, :2]
+    X_train = dataset_train[:, 3:].astype(np.int64)
+    Y_train = dataset_train[:, 2].astype(np.int64).reshape([-1, 1])
+    AC_test = dataset_test[:, :2]
+    X_test = dataset_test[:, 3:].astype(np.int64)
+    Y_test = dataset_test[:, 2].astype(np.int64).reshape([-1, 1])
+    X_all = np.concatenate([X_train, X_test])
+    Y_all = np.concatenate([Y_train, Y_test])
 
-DeepDSI can run on both Windows v10 and Ubuntu v18.04 environments. We highly recommend installing and running this software on a computer with an discrete NVIDIA graphics card (models that support CUDA). If there is no discrete graphics card, the program can also run on the CPU, but it may require a longer runtime.
+    features, adj_norm, adj_label  = load_data(uniprot, data_path, is_CT = True)
+    features = features.to(device=try_gpu())
+    adj_norm = adj_norm.to(device=try_gpu())
+    adj_label = adj_label.to(device=try_gpu())
 
-### Installation
+    print("Train variational graph autoencoder")
+    VGAE, _  = train_VGAE(features, adj_norm, adj_label, 100, 343)
+    vgae_dict = VGAE.state_dict()
+    del VGAE, _
+    torch.cuda.empty_cache()
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Laboratory-of-biological-networks/DeepDSI.git
-   ```
-2. Create conda environment for DeepDSI
-   ```sh
-   conda env create -f environment.yml
-   ```
-3. Based on your use, you may need to download data
+    perf_org, perf, perf_ub2 = cross_val(vgae_dict, features, adj_norm, AC_train, X_train, Y_train, epochs=100, save_path = "../results/roc/")
+    print(perf_org)
+    print(perf)
+    print(perf_ub2)
 
-   Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://zenodo.org/record/7648337/files/data.tar.gz?download=1)
-
-   Uncompress `tar.gz` file into the DeepDSI directory
-   ```sh
-   tar -zxvf data.tar.gz -C /path/to/DeepDSI
-   ```
-The time it takes to install the required software for DeepDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to https://medium.com/analytics-vidhya/4-steps-to-install-anaconda-and-pytorch-onwindows-10-5c9cb0c80dfe for further details.
-
-### Folders
-./src contains the implementation for the fivefold cross-validations and independent tests of DeepDSI and Baselines.
-
-./preprocessing contains the selection of gold standard dataset and the coding of protein sequence features and similarity matrix.
-
-./explain contains the invoking of PairExplainer, which is used to analyze the explainability of the queried DSI.
-
-./results contains DeepDSI prediction results, explainable analysis results, and trained DeepDSI model.
-
-## Usage
-
-### DSI prediction
-To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following parameters:
-
-* `dub`             str, Uniprot ID of the queried DUB
-* `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
-* `model_location`             str, DSIPredictor model file location
-
-#### DEMO: obtaining the DeepDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
-
-```sh
->> python run_DSIPredictor.py --dub Q14694 --candidate_sub Q00987
-```
-OR
-```sh
->> python run_DSIPredictor.py -d Q14694 -s Q00987
-```
-
-#### Output:
-
-```txt
-Collect embeddings
-100%|███████████████████████████████████████████████████| 20398/20398 [00:10<00:00, 1993.32it/s]
-Calculate the sequence similarity matrix
-100%|█████████████████████████████████████████████| 3383863/3383863 [00:05<00:00, 598758.94it/s]
-Transferred model and data to GPU
-The DeepDSI score of Q14694 and Q00987 is 0.9987.
-```
-
-Under normal circumstances, DeepDSI typically takes around 100 seconds to predict the DeepDSI score for a candidate DSI pair.
-If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command.
-
-
-### DSI binding site inference
-To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the interaction
-
-use `run_PairExplainer.py` script with the following parameters:
-
-* `feat_mask_obj`             str, The object of feature mask that will be learned (`dsi` - DSI, `dub` - DUB, `sub` - SUB)
-* `dub`             str, Uniprot ID of the queried DUB
-* `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
-* `model_location`             str, DSIPredictor model file location
-* `output_location`             str, PairExplainer output file location
-* `lr`             float, The learning rate to train PairExplainer
-* `epochs`             int, Number of epochs to train PairExplainer
-* `log`             bool, Whether or not to print the learning progress of PairExplainer
-
-#### DEMO: obtaining the PairExplainer results of USP10-MDM2
-
-```sh
->> python run_PairExplainer.py --feat_mask_obj dsi --dub Q14694 --candidate_sub Q00987 --output_location results/importance/
-```
-OR
-```sh
->> python run_PairExplainer.py -obj dsi -d Q14694 -s Q00987
-```
-
-#### Output:
-
-```txt
-Collect embeddings
-100%|███████████████████████████████████████████████████| 20398/20398 [00:10<00:00, 1940.45it/s]
-Calculate the sequence similarity matrix
-100%|█████████████████████████████████████████████| 3383863/3383863 [00:05<00:00, 602453.09it/s]
-Transferred model and data to GPU
-importance this pair of DSI: 100%|████████████████████████| 10000/10000 [03:41<00:00, 45.17it/s]
-The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q14694_Q00987.csv'.
-```
-
-Under normal circumstances, PairExplainer takes approximately 300 seconds to predict the importance of each position on a candidate DSI pair.
-
-If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command. However, this is not recommended as retraining PairExplainer would be necessary, which can take around 4 hours.
-
-
-### Reproduction instructions for five-fold cross-validations and independent tests:
-
-If you want to replicate the five-fold cross-validation and independent testing process of DeepDSI, please run the `main.py` script in the src folder.
-```sh
->> python src/main.py
-```
-
-## Available Data
-
-* #### [Gold Standard Dataset (GSD)](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S1.xlsx)
-DeepDSI has established a rigorous gold standard dataset where the positive set is sourced from [UBibroswer 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/) and negative set is derived from [BioGRID](https://thebiogrid.org/). We divided GSD into the cross-validation dataset and the independent test dataset in chronological order.
-
-We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**, please [click](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S4.xlsx) to download.
-
-* #### [Benchmark Dataset](https://github.com/LiDlab/DeepDSI/tree/master/results/roc)
-
-To ensure fair comparison, cross-validation dataset and independent test dataset are intersected with the corresponding datasets from [UbiBrowser 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/home/download).
-
-Click to download the [cross-validation results](https://github.com/LiDlab/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
-
-* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx)
-DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
-
-We also provide **PDSID with inferred binding sites**, please [click](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx) to download.
-
-## License
-
-This project is covered under the **Apache 2.0 License**.
+    perf_org, perf, perf_ub2 = ind_test(vgae_dict, features, adj_norm, X_train, Y_train, AC_test, X_test, Y_test, epochs=100, save_path = "../results/roc/")
+    print(perf_org)
+    print(perf)
+    print(perf_ub2)
