@@ -160,7 +160,7 @@ Under normal circumstances, PairExplainer takes approximately 300 seconds to pre
 If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command. However, this is not recommended as retraining PairExplainer would be necessary, which can take around 4 hours.
 
 
-### Reproduction instructions for five-fold cross-validations and independent tests:
+### Reproduction instructions for five-fold cross-validations and independent tests
 
 If you want to replicate the five-fold cross-validation and independent testing process of DeepDSI, please run the `main.py` script in the src folder.
 ```sh
