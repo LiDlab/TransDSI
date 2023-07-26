@@ -151,7 +151,7 @@ importance this pair of DSI: 100%|███████████████�
 The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q14694_Q00987.csv'.
 ```
 
-Under normal circumstances, PairExplainer takes approximately 300 seconds to predict the importance of each position on a candidate DSI pair. Therefore, before running it, please ensure that the candidate DSI you wish to predict is not present in our provided [PDSID](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx).
+Under normal circumstances, PairExplainer takes approximately 300 seconds to predict the importance of each position on a candidate DSI pair. Therefore, before running it, please ensure that the candidate DSI you wish to predict is not present in our provided [GSD](#gold-standard-dataset-gsd) or [PDSID](#predicted-dsi-dataset-pdsid).
 
 If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command. However, this is not recommended as retraining PairExplainer would be necessary, which can take around 4 hours.
 
