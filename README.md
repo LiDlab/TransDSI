@@ -88,7 +88,7 @@ The time it takes to install the required software for DeepDSI on a "normal" des
 ## Usage
 
 ### DSI prediction
-To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following parameters:
+To predict deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` script with the following parameters:
 
 * `dub`             str, Uniprot ID of the queried DUB
 * `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
