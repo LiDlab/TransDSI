@@ -97,11 +97,11 @@ To predict Deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` 
 #### DEMO: obtaining the DeepDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
 
 ```sh
->> python run_DSIPredictor.py --dub Q14694 --candidate_sub Q00987
+python run_DSIPredictor.py --dub Q14694 --candidate_sub Q00987
 ```
 OR
 ```sh
->> python run_DSIPredictor.py -d Q14694 -s Q00987
+python run_DSIPredictor.py -d Q14694 -s Q00987
 ```
 
 #### Output:
@@ -136,11 +136,11 @@ use `run_PairExplainer.py` script with the following parameters:
 #### DEMO: obtaining the PairExplainer results of USP10-MDM2
 
 ```sh
->> python run_PairExplainer.py --feat_mask_obj dsi --dub Q14694 --candidate_sub Q00987 --output_location results/importance/
+python run_PairExplainer.py --feat_mask_obj dsi --dub Q14694 --candidate_sub Q00987 --output_location results/importance/
 ```
 OR
 ```sh
->> python run_PairExplainer.py -obj dsi -d Q14694 -s Q00987
+python run_PairExplainer.py -obj dsi -d Q14694 -s Q00987
 ```
 
 #### Output:
@@ -164,7 +164,7 @@ If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the
 
 If you want to replicate the five-fold cross-validation and independent testing process of DeepDSI, please run the `main.py` script in the src folder.
 ```sh
->> python src/main.py
+python src/main.py
 ```
 
 ## Available Data
