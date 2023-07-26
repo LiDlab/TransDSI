@@ -114,7 +114,7 @@ The DeepDSI score of Q14694 and Q00987 is 0.9987.
 ```
 
 Under normal circumstances, DeepDSI typically takes around 100 seconds to predict the DeepDSI score for a candidate DSI pair.
-If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command. In certain scenarios, it may even be faster than using the GPU.
+If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command.
 
 
 ### DSI binding site inference
@@ -151,12 +151,12 @@ importance this pair of DSI: 100%|███████████████�
 The explainable result of Q14694 and Q00987 is saved in 'results/importance/Q14694_Q00987.csv'.
 ```
 
-Under normal circumstances, PairExplainer takes approximately 300 seconds to predict the importance of each position on a candidate DSI pair. Therefore, before running it, please ensure that the candidate DSI you wish to predict is not present in our provided [GSD](#gold-standard-dataset-gsd) or [PDSID](#predicted-dub-substrate-interaction-dataset-pdsid).
+Under normal circumstances, PairExplainer takes approximately 300 seconds to predict the importance of each position on a candidate DSI pair.
 
 If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command. However, this is not recommended as retraining PairExplainer would be necessary, which can take around 4 hours.
 
 
-#### Reproduction instructions for fivefold cross-validations and independent tests:
+### Reproduction instructions for fivefold cross-validations and independent tests:
 
 
 ## Available Data
