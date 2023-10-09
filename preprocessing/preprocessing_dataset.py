@@ -212,3 +212,6 @@ inter_gsp_train.to_csv(save_path + "inter_gsp_train.txt", index=False, header=Tr
 inter_gsn_train.to_csv(save_path + "inter_gsn_train.txt", index=False, header=True, sep="\t")
 new_inter_gsp_test.to_csv(save_path + "inter_gsp_test.txt", index=False, header=True, sep="\t")
 new_inter_gsn_test.to_csv(save_path + "inter_gsn_test.txt", index=False, header=True, sep="\t")
+
+# Store the PPI data from BIOGRID that includes DUB into a file named BIOGRID_DUB.txt.
+gsn.to_csv(save_path + "BIOGRID_DUB.txt", index=False, header=True, sep="\t")
