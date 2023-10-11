@@ -54,7 +54,6 @@ if __name__ == "__main__":
                 if ik < len(seque):
                     xx[n1][n2] = seque[ik]
                     ik += 1
-        # xx记录20列的序列矩阵
         return xx
 
     seq_matrix = seq_mapping(row_number, sub_seq, type = str)
