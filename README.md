@@ -40,9 +40,9 @@
 
 ## About The Project
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
- ![DeepDSI Architecture](results/model/Fig1.png)
+ ![TransDSI Architecture](results/model/Fig1.png)
 
-DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. DeepDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, DeepDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
+TransDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. TransDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, TransDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of binding regions.
 
 
 
@@ -50,40 +50,40 @@ DeepDSI is a novel, sequence-based _ab initio_ method that leverages explainable
 To get a local copy up and running, follow these steps:
 
 ### Dependencies
-DeepDSI is tested to work under Python 3.7.
-The required dependencies for DeepDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
+TransDSI is tested to work under Python 3.7.
+The required dependencies for TransDSI are  [Pytorch](https://pytorch.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) and [scikit-learn](http://scikit-learn.org/).
 Check environments.yml for list of needed packages.
 
-DeepDSI can run on both Windows 10 and Ubuntu 18.04 environments. We highly recommend installing and running this software on a computer with a discrete NVIDIA graphics card (models that support CUDA). If there is no discrete graphics card, the program can also run on the CPU, but it may require a longer runtime.
+TransDSI can run on both Windows 10 and Ubuntu 18.04 environments. We highly recommend installing and running this software on a computer with a discrete NVIDIA graphics card (models that support CUDA). If there is no discrete graphics card, the program can also run on the CPU, but it may require a longer runtime.
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Laboratory-of-biological-networks/DeepDSI.git
+   git clone https://github.com/LiDlab/TransDSI.git
    ```
-2. Create conda environment for DeepDSI
+2. Create conda environment for TransDSI
    ```sh
    conda env create -f environment.yml
    ```
 3. Based on your use, you may need to download data
 
-   Datasets (validation and test) and features for training DeepDSI are provided in [DeepDSI data(~82M)](https://zenodo.org/record/7648337/files/data.tar.gz?download=1)
+   Datasets (validation and test) and features for training TransDSI are provided in [TransDSI data(~82M)](https://zenodo.org/record/7648337/files/data.tar.gz?download=1)
 
-   Uncompress `tar.gz` file into the DeepDSI directory
+   Uncompress `tar.gz` file into the TransDSI directory
    ```sh
-   tar -zxvf data.tar.gz -C /path/to/DeepDSI
+   tar -zxvf data.tar.gz -C /path/to/TransDSI
    ```
-The time it takes to install the required software for DeepDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to https://medium.com/analytics-vidhya/4-steps-to-install-anaconda-and-pytorch-onwindows-10-5c9cb0c80dfe for further details.
+The time it takes to install the required software for TransDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to https://medium.com/analytics-vidhya/4-steps-to-install-anaconda-and-pytorch-onwindows-10-5c9cb0c80dfe for further details.
 
 ### Folders
-./src contains the implementation for the fivefold cross-validations and independent tests of DeepDSI and Baselines.
+./src contains the implementation for the fivefold cross-validations and independent tests of TransDSI and Baselines.
 
 ./preprocessing contains the selection of gold standard dataset and the coding of protein sequence features and similarity matrix.
 
 ./explain contains the invoking of PairExplainer, which is used to analyze the explainability of the queried DSI.
 
-./results contains DeepDSI prediction results, explainable analysis results, and trained DeepDSI model.
+./results contains TransDSI prediction results, explainable analysis results, and trained TransDSI model.
 
 ## Usage
 
@@ -94,7 +94,7 @@ To predict deubiquitinase substrate interaction (DSI) use `run_DSIPredictor.py` 
 * `candidate_sub`            str, Uniprot ID of the candidate substrate corresponding to the queried DUB
 * `model_location`             str, DSIPredictor model file location
 
-#### DEMO: obtaining the DeepDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
+#### DEMO: obtaining the TransDSI score of [USP10-MDM2](https://www.sciencedirect.com/science/article/pii/S2211124722012761)
 
 ```sh
 python run_DSIPredictor.py --dub Q14694 --candidate_sub Q00987
@@ -112,10 +112,10 @@ Collect embeddings
 Calculate the sequence similarity matrix
 100%|█████████████████████████████████████████████| 3383863/3383863 [00:05<00:00, 598758.94it/s]
 Transferred model and data to GPU
-The DeepDSI score of Q14694 and Q00987 is 0.9987.
+The TransDSI score of Q14694 and Q00987 is 0.9987.
 ```
 
-Under normal circumstances, DeepDSI typically takes around 100 seconds to predict the DeepDSI score for a candidate DSI pair.
+Under normal circumstances, TransDSI typically takes around 100 seconds to predict the TransDSI score for a candidate DSI pair.
 If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command.
 
 
@@ -162,7 +162,7 @@ If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the
 
 ### Reproduction instructions for five-fold cross-validations and independent tests
 
-If you want to replicate the five-fold cross-validation and independent testing process of DeepDSI, please run the `main.py` script in the src folder.
+If you want to replicate the five-fold cross-validation and independent testing process of TransDSI, please run the `main.py` script in the src folder.
 ```sh
 cd src/
 ```
@@ -173,21 +173,21 @@ python main.py
 
 ## Available Data
 
-* #### [Gold Standard Dataset (GSD)](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S1.xlsx)
-DeepDSI has established a rigorous gold standard dataset where the positive set is sourced from [UBibroswer 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/) and negative set is derived from [BioGRID](https://thebiogrid.org/). We divided GSD into the cross-validation dataset and the independent test dataset in chronological order.
+* #### [Gold Standard Dataset (GSD)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S1.xlsx)
+TransDSI has established a rigorous gold standard dataset where the positive set is sourced from [UBibroswer 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/) and negative set is derived from [BioGRID](https://thebiogrid.org/). We divided GSD into the cross-validation dataset and the independent test dataset in chronological order.
 
-We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**, please [click](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S4.xlsx) to download.
+We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S4.xlsx) to download.
 
-* #### [Benchmark Dataset](https://github.com/LiDlab/DeepDSI/tree/master/results/roc)
+* #### [Benchmark Dataset](https://github.com/LiDlab/TransDSI/tree/master/results/roc)
 
 To ensure fair comparison, cross-validation dataset and independent test dataset are intersected with the corresponding datasets from [UbiBrowser 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/home/download).
 
-Click to download the [cross-validation results](https://github.com/LiDlab/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/DeepDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
+Click to download the [cross-validation results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_indtest.csv).
 
-* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx)
-DeepDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
+* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx)
+TransDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
 
-We also provide **PDSID with inferred binding sites**, please [click](https://github.com/LiDlab/DeepDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx) to download.
+We also provide **PDSID with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx) to download.
 
 ## License
 
