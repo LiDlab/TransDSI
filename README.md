@@ -1,4 +1,4 @@
-<h1 align="center">DeepDSI</h1>
+<h1 align="center">TransDSI</h1>
 
 
 <!-- TABLE OF CONTENTS -->
