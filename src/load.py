@@ -62,7 +62,7 @@ def load_adj(data, gene_num):
 def load_data(uniprot, path, is_CT: bool = True):
 
     print("Collect embeddings")
-    features_separate = h5py.File(path + "DeepDSI_features.hdf5", "r")
+    features_separate = h5py.File(path + "TransDSI_features.hdf5", "r")
     features = load_features(features_separate, uniprot, is_CT)
 
     print("Calculate the sequence similarity matrix")
