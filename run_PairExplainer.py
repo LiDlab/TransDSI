@@ -13,7 +13,7 @@ from explain.explain_vis import get_average_score_per_triplet
 
 def create_parser():
     parser = argparse.ArgumentParser(
-        description="Investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the DeepDSI score"
+        description="Investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the TransDSI score"
     )
     parser.add_argument(
         "-obj", "--feat_mask_obj",
