@@ -74,7 +74,7 @@ TransDSI can run on both Windows 10 and Ubuntu 18.04 environments. We highly rec
    ```sh
    tar -zxvf data.tar.gz -C /path/to/TransDSI
    ```
-The time it takes to install the required software for TransDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to https://medium.com/analytics-vidhya/4-steps-to-install-anaconda-and-pytorch-onwindows-10-5c9cb0c80dfe for further details.
+The time it takes to install the required software for TransDSI on a "normal" desktop computer is no longer than on a professional computer with a discrete graphics card. Setting up Python and the corresponding dependency packages in the Windows 10 system will not take more than 15 minutes. If you need help, please refer to the [link](https://geekflare.com/pytorch-installation-windows-and-linux/).
 
 ### Folders
 ./src contains the implementation for the fivefold cross-validations and independent tests of TransDSI and Baselines.
