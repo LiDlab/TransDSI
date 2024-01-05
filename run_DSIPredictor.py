@@ -65,7 +65,7 @@ def main(args):
     with torch.no_grad():
         pred = model(features, adj_norm, [dub_idx], [sub_idx])
 
-    print("The DeepDSI score of " + args.dub + " and " + args.candidate_sub + " is " + str(np.round(pred.item(),4)) + ".")
+    print("The TransDSI score of " + args.dub + " and " + args.candidate_sub + " is " + str(np.round(pred.item(),4)) + ".")
 
 
 
