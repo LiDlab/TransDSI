@@ -185,7 +185,7 @@ We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**
 
 To ensure fair comparison, cross-validation dataset and independent test dataset are intersected with the corresponding datasets from [UbiBrowser 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/home/download).
 
-Click to download the [cross-validation results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_indtest.csv).
+Click to download the [cross-validation results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_DeepDSI_CTMLP_indtest.csv).
 
 * #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%204.xlsx)
 TransDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
