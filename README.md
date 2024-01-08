@@ -68,7 +68,7 @@ TransDSI can run on both Windows 10 and Ubuntu 18.04 environments. We highly rec
    ```
 3. Based on your use, you may need to download data
 
-   Datasets (validation and test) and features for training TransDSI are provided in [TransDSI data(~82M)](https://zenodo.org/record/7648337/files/data.tar.gz?download=1)
+   Datasets (validation and test) and features for training TransDSI are provided in [TransDSI data(~82M)](https://zenodo.org/records/10467917/files/data.tar.gz?download=1)
 
    Uncompress `tar.gz` file into the TransDSI directory
    ```sh
@@ -107,12 +107,14 @@ python run_DSIPredictor.py -d Q14694 -s Q00987
 #### Output:
 
 ```txt
-Collect embeddings
+Importing protein sequence features...
 100%|███████████████████████████████████████████████████| 20398/20398 [00:10<00:00, 1993.32it/s]
-Calculate the sequence similarity matrix
+Done.
+Importing normalized sequence similarity matrix...
 100%|█████████████████████████████████████████████| 3383863/3383863 [00:05<00:00, 598758.94it/s]
+Done.
 Transferred model and data to GPU
-The TransDSI score of Q14694 and Q00987 is 0.9987.
+The TransDSI score of Q14694 and Q00987 is 0.9654.
 ```
 
 Under normal circumstances, TransDSI typically takes around 100 seconds to predict the TransDSI score for a candidate DSI pair.
@@ -146,9 +148,10 @@ python run_PairExplainer.py -obj dsi -d Q14694 -s Q00987
 #### Output:
 
 ```txt
-Collect embeddings
+Importing protein sequence features...
 100%|███████████████████████████████████████████████████| 20398/20398 [00:10<00:00, 1940.45it/s]
-Calculate the sequence similarity matrix
+Done.
+Importing normalized sequence similarity matrix...
 100%|█████████████████████████████████████████████| 3383863/3383863 [00:05<00:00, 602453.09it/s]
 Transferred model and data to GPU
 importance this pair of DSI: 100%|████████████████████████| 10000/10000 [03:41<00:00, 45.17it/s]
@@ -173,10 +176,10 @@ python main.py
 
 ## Available Data
 
-* #### [Gold Standard Dataset (GSD)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S1.xlsx)
+* #### [Gold Standard Dataset (GSD)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%201.xlsx)
 TransDSI has established a rigorous gold standard dataset where the positive set is sourced from [UBibroswer 2.0](http://ubibrowser.bio-it.cn/ubibrowser_v3/) and negative set is derived from [BioGRID](https://thebiogrid.org/). We divided GSD into the cross-validation dataset and the independent test dataset in chronological order.
 
-We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S4.xlsx) to download.
+We also provide **Gold Standard Positive Set (GSP) with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%206.xlsx) to download.
 
 * #### [Benchmark Dataset](https://github.com/LiDlab/TransDSI/tree/master/results/roc)
 
@@ -184,10 +187,10 @@ To ensure fair comparison, cross-validation dataset and independent test dataset
 
 Click to download the [cross-validation results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_crossval.csv) and the [independent test results](https://github.com/LiDlab/TransDSI/blob/master/results/roc/UB2_TransDSI_CTMLP_indtest.csv).
 
-* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx)
+* #### [Predicted DUB-Substrate Interaction Dataset (PDSID)](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%204.xlsx)
 TransDSI was used to performed a large-scale proteome-wide DSI scanning, resulting in a predicted DUB-substrate interaction dataset (PDSID) with 19,461 predicted interactions between 85 DUBs and 5,151 substrates.
 
-We also provide **PDSID with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%20S2.xlsx) to download.
+We also provide **PDSID with inferred binding sites**, please [click](https://github.com/LiDlab/TransDSI/raw/master/Supplementary%20Tables/Supplementary%20Table%204.xlsx) to download.
 
 ## License
 
