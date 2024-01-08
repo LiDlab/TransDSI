@@ -17,13 +17,15 @@ def create_parser():
     parser.add_argument(
         "-d", "--dub",
         type=str,
-        required = True,
+        default='Q14694',
+        # required = True,
         help="Uniprot ID of the queried DUB",
     )
     parser.add_argument(
         "-s", "--candidate_sub",
         type=str,
-        required=True,
+        default='Q00987',
+        # required=True,
         help="Uniprot ID of the candidate substrate corresponding to the queried DUB",
     )
 
@@ -64,8 +66,10 @@ def main(args):
 
     with torch.no_grad():
         pred = model(features, adj_norm, [dub_idx], [sub_idx])
+        logits = np.log(pred.item() / (1 - pred.item()))
+        scaled_pred = 1 / (1 + np.exp(-0.5 * logits))
 
-    print("The TransDSI score of " + args.dub + " and " + args.candidate_sub + " is " + str(np.round(pred.item(),4)) + ".")
+    print("The TransDSI score of " + args.dub + " and " + args.candidate_sub + " is " + str(np.round(scaled_pred, 4)) + ".")
 
 
 
