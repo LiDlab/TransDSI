@@ -17,15 +17,13 @@ def create_parser():
     parser.add_argument(
         "-d", "--dub",
         type=str,
-        default='Q14694',
-        # required = True,
+        required = True,
         help="Uniprot ID of the queried DUB",
     )
     parser.add_argument(
         "-s", "--candidate_sub",
         type=str,
-        default='Q00987',
-        # required=True,
+        required=True,
         help="Uniprot ID of the candidate substrate corresponding to the queried DUB",
     )
 
