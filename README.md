@@ -20,7 +20,7 @@
       <a href="#usage">Usage</a>
       <ul>
         <li><a href="#dsi-prediction">DSI prediction</a></li>
-        <li><a href="#dsi-binding-site-inference">DSI binding site inference</a></li>
+        <li><a href="#dsi-binding-site-inference">DSI key sequence feature inference</a></li>
       </ul>
     </li>
     <li>
