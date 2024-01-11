@@ -121,8 +121,8 @@ Under normal circumstances, TransDSI typically takes around 100 seconds to predi
 If you prefer not to utilize the GPU, you can append `--nogpu` at the end of the command.
 
 
-### DSI binding site inference
-To investigate the regions of the input DUB and/or candidate SUB sequence that contribute the most to the interaction
+### DSI key sequence feature inference
+To investigate sequence features that suggest associations between DUBs and substrates.
 
 use `run_PairExplainer.py` script with the following parameters:
 
