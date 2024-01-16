@@ -3,6 +3,7 @@ channels:
   - pytorch
   - conda-forge
   - defaults
+  - pyg
 
 dependencies:
   - python=3.7.0
@@ -17,7 +18,5 @@ dependencies:
   - scipy=1.7.1
   - seaborn=0.11.2
   - tqdm=4.62.3
-  - pip:
-    - torch-geometric==2.0.3
-    - torch-scatter==2.0.9
-    - torch-sparse==0.6.12
+  - pyg
+  - xgboost
