@@ -80,7 +80,7 @@ class RWDloader():
         return self.dataset_train, self.dataset_test
 
     def saving_dataset(self, save_path):
-        # 保存为.csv文件
+        # save as .CSV file
         if not os.path.exists(save_path):
             os.makedirs(save_path, exist_ok=True)
         pd.DataFrame(self.dataset_train, columns=["DUB", "Pro", "label", "DUB_idx", "Pro_idx"]).to_csv(
