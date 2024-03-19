@@ -62,7 +62,7 @@ if __name__ == "__main__":
     matplotlib.use('Agg')
     fig, ax = plt.subplots(figsize=(0.667 * row_number, 12))
     sns.set_style('white')
-    cdict = [(0, '#337071'), (0.5, '#FFFFFF'), (1, '#B51D23')]
+    cdict = [(0, '#2F2FFF'), (0.5, '#FFFFFF'), (1, '#FF0000')]
     col = LinearSegmentedColormap.from_list('', cdict)
 
     sns.heatmap(data=imp_matrix, linewidths=0.1, annot=seq_matrix, annot_kws={'fontsize': 15}, fmt='', linecolor='#DCDCDE',
