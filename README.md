@@ -34,6 +34,9 @@
     <li>
       <a href="#License">License</a>
     </li>
+    <li>
+      <a href="#Contact">Contact</a>
+    </li>
   </ol>
 </details>
 
@@ -195,3 +198,10 @@ We also provide **PDSID with inferred binding sites**, please [click](https://gi
 ## License
 
 This project is covered under the **Apache 2.0 License**.
+
+## Contact
+Dianke Li: diankeli@foxmail.com
+
+Yuan Liu: liuy1219@foxmail.com
+
+Dong Li: lidongbprc@foxmail.com
