@@ -1,4 +1,4 @@
-<h1 align="center">TransDSI</h1>
+<h1 align="center">π-TransDSI</h1>
 
 
 <!-- TABLE OF CONTENTS -->
@@ -45,7 +45,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
  ![TransDSI Architecture](results/model/Fig1.png)
 
-TransDSI is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. TransDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, TransDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of sequence features that suggest associations between DUBs and substrates. 
+π-TransDSI is a user-friendly software based on TransDSI architecture, which is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. TransDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, TransDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of sequence features that suggest associations between DUBs and substrates. 
 
 
 
