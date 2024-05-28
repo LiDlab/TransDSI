@@ -42,10 +42,14 @@
 
 
 ## About The Project
+[![TransDSI](https://img.shields.io/github/v/release/Dianke-Li/TransDSI?include_prereleases)](https://github.com/Dianke-Li/TransDSI/releases)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10866136.svg)](https://zenodo.org/records/10866136)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
  ![TransDSI Architecture](results/model/Fig1.png)
 
 π-TransDSI is a user-friendly software based on **TransDSI** architecture, which is a novel, sequence-based _ab initio_ method that leverages explainable graph neural networks and transfer learning for deubiquitinase-substrate interaction (DSI) prediction. TransDSI transfers intrinsic biological properties learned from protein sequences to predict the catalytic function of DUBs, leading to a significant improvement over state-of-the-art feature engineering methods and enabling the discovery of novel DSIs. Additionally, TransDSI features an explainable module, allowing for accurate predictions of DSIs and the identification of sequence features that suggest associations between DUBs and substrates. 
+
+TransDSI is described in the paper [“A protein sequence-based deep transfer learning framework for identifying human proteome-wide deubiquitinase-substrate interactions”](https://www.nature.com/articles/s41467-024-48446-3) by Yuan Liu, Dianke Li, Xin Zhang, et al.
 
 
 
