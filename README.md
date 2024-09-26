@@ -47,7 +47,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 <p align="center">
-  <img src="results/model/Fig1.png" alt="TransDSI v1.0 architecture" width="600">
+  <img src="results/model/Fig1.png" alt="TransDSI v1.0 architecture" width="900">
   <br>
   <b>Figure</b>: TransDSI Overall Architecture
 </p>
